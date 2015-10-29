@@ -140,7 +140,6 @@ int main()
     }
     */
 
-    /*
     CComPtr<IWICBitmap> spBitmap;
     if (SUCCEEDED(hr))
     {
@@ -215,31 +214,6 @@ int main()
             &subData,
             &spSharedTexture);
     }
-    */
-
-    CComPtr<ID3D11Texture2D> spSharedTexture;
-    if (SUCCEEDED(hr))
-    {
-        D3D11_TEXTURE2D_DESC desc;
-        ZeroMemory(&desc, sizeof(desc));
-
-        desc.Width = 1024;
-        desc.Height = 1024;
-        desc.ArraySize = 1;
-        desc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
-        desc.CPUAccessFlags = D3D11_CPU_ACCESS_READ | D3D11_CPU_ACCESS_WRITE;
-        desc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
-        desc.MipLevels = 1;
-        desc.MiscFlags = D3D11_RESOURCE_MISC_SHARED;
-        desc.SampleDesc.Count = 1;
-        desc.SampleDesc.Quality = 0;
-        desc.Usage = D3D11_USAGE_DEFAULT;
-
-        hr = spD3DDevice->CreateTexture2D(
-            &desc,
-            NULL,
-            &spSharedTexture);
-    }
 
     /*
     D3D11_MAPPED_TEXTURE2D mapped;
@@ -297,27 +271,6 @@ int main()
             &spD2DDeviceContext);
     }
 
-    /*CComPtr<ID2D1RenderTarget> spRenderTarget;
-    if (SUCCEEDED(hr))
-    {
-        D2D1_RENDER_TARGET_PROPERTIES rtProps;
-        ZeroMemory(&rtProps, sizeof(rtProps));
-
-        rtProps.dpiX = 96;
-        rtProps.dpiY = 96;
-        rtProps.minLevel = D2D1_FEATURE_LEVEL_10;
-        rtProps.pixelFormat.alphaMode = D2D1_ALPHA_MODE_PREMULTIPLIED;
-        rtProps.pixelFormat.format = DXGI_FORMAT_UNKNOWN;
-        rtProps.type = D2D1_RENDER_TARGET_TYPE_DEFAULT;
-        rtProps.usage = D2D1_RENDER_TARGET_USAGE_NONE;
-
-        hr = spD2DFactory->CreateDxgiSurfaceRenderTarget(
-            spSharedDxgiSurface,
-            &rtProps,
-            &spRenderTarget);
-    }*/
-
-    /*
     CComPtr<ID2D1Bitmap1> spD2DBitmap;
     if (SUCCEEDED(hr))
     {
@@ -333,26 +286,8 @@ int main()
             bitmapProps,
             &spD2DBitmap);
     }
-    */
 
-    CComPtr<ID2D1Bitmap1> spD2DBitmap;
-    if (SUCCEEDED(hr))
-    {
-        D2D1_BITMAP_PROPERTIES bitmapProps;
-        ZeroMemory(&bitmapProps, sizeof(bitmapProps));
-
-        //bitmapProps.bitmapOptions = D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW;
-        bitmapProps.pixelFormat.alphaMode = D2D1_ALPHA_MODE_PREMULTIPLIED;
-        bitmapProps.pixelFormat.format = DXGI_FORMAT_UNKNOWN;
-
-        hr = spD2DDeviceContext->CreateSharedBitmap(
-            __uuidof(IDXGISurface),
-            (void*)spSharedDxgiSurface,
-            &bitmapProps,
-            &spD2DBitmap);
-    }
-
-
+    /*
     D2D1_MAPPED_RECT mappedRect;
     ZeroMemory(&mappedRect, sizeof(mappedRect));
     if (SUCCEEDED(hr))
@@ -365,7 +300,7 @@ int main()
     if (SUCCEEDED(hr))
     {
         hr = spD2DBitmap->Unmap();
-    }
+    }*/
 
     if (SUCCEEDED(hr))
     {
@@ -438,10 +373,9 @@ int main()
         spD2DDevice.Release();
         spSharedDxgiSurface.Release();
         spSharedTexture.Release();
-        //spBitmapLock.Release();
+        spBitmapLock.Release();
     }
 
-    /*
     // Save an image to disk
     CComPtr<IWICStream> spStream;
     if (SUCCEEDED(hr))
@@ -501,7 +435,6 @@ int main()
     {
         hr = spEncoder->Commit();
     }
-    */
 
     return 0;
 }
