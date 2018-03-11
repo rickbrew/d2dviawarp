@@ -2,3 +2,12 @@ Debug
 Release
 *.opensdf
 *.sdf
+dxgi/dxgi.vcxproj.user
+.vs/dxgi/v14/.suo
+.vs/dxgi/v15/.suo
+.vs/dxgi/v15/Browse.VC.db
+.vs/dxgi/v15/ipch/AutoPCH/b0bc5122d7a5f833/D3D11.ipch
+.vs/dxgi/v15/ipch/AutoPCH/ef3c8147dde8fe64/DXGI.ipch
+.vs/dxgi/v15/ipch/AutoPCH/f4958b898d07f788/DXGI.ipch
+dxgi/Debug/vc140.idb
+dxgi/Debug/vc140.idb
